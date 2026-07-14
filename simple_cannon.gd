@@ -25,9 +25,6 @@ func convert_position(angle: float, down: bool) -> int:
 	
 	return count
 		
-	
-	
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
