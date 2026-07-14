@@ -1,0 +1,19 @@
+[gd_scene format=4 uid="uid://yrginj3n6efk"]
+
+[ext_resource type="TileSet" uid="uid://be4fkbtox6s5t" path="res://Map/Mossy Tileset.tres" id="1_njngi"]
+[ext_resource type="PackedScene" uid="uid://dka8gm32ciaax" path="res://Mage/mage.tscn" id="2_njngi"]
+[ext_resource type="PackedScene" uid="uid://c6wal8jb1tsow" path="res://Mage/evil_mage.tscn" id="3_6yc6o"]
+
+[node name="Map" type="Node2D" unique_id=649160800]
+
+[node name="Mage" parent="." unique_id=1947930868 instance=ExtResource("3_6yc6o")]
+position = Vector2(3096, -104)
+
+[node name="CharacterBody2D" parent="." unique_id=1489306979 instance=ExtResource("2_njngi")]
+position = Vector2(264, -112)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=375449188]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2042782505]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAABAAAAAAACAAAAAAABAAAAAAADAAAAAAABAAAAAAAEAAAAAAABAAAAAAAAAAEAAAAAAAIAAAABAAEAAAABAAIAAAACAAEAAAABAAIAAAADAAEAAAABAAIAAAAEAAEAAAABAAIAAAAFAAAAAAABAAAAAAAGAAAAAAABAAAAAAAHAAAAAAABAAAAAAAHAAEAAAABAAIAAAAGAAEAAAABAAIAAAAFAAEAAAABAAIAAAAIAAAAAAABAAAAAAAJAAAAAAABAAAAAAAKAAAAAAABAAAAAAALAAAAAAABAAAAAAAMAAAAAAABAAAAAAAMAAEAAAABAAIAAAALAAEAAAABAAIAAAAKAAEAAAABAAIAAAAJAAEAAAABAAIAAAAIAAEAAAABAAIAAAANAAAAAAABAAAAAAAOAAAAAAACAAAAAAANAAEAAAABAAIAAAAOAAEAAAACAAIAAAA=")
+tile_set = ExtResource("1_njngi")

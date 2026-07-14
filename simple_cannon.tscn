@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cf6qn7g2l1pis"]
+
+[ext_resource type="Script" uid="uid://dw0t4xdik5h7x" path="res://simple_cannon.gd" id="1_l5j3k"]
+
+[node name="Simple Cannon" type="Node2D" unique_id=117551811]
+script = ExtResource("1_l5j3k")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=178875751]
+offset_left = -16.0
+offset_top = -24.0
+offset_right = 16.0
+offset_bottom = 24.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1263063225]
+offset_left = 8.0
+offset_top = -8.0
+offset_right = 40.0
+offset_bottom = 8.0
+color = Color(0, 0, 0, 1)

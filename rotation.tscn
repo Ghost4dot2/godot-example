@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dqjhw6p61r7ai"]
+
+[ext_resource type="PackedScene" uid="uid://cf6qn7g2l1pis" path="res://simple_cannon.tscn" id="1_la1eu"]
+
+[node name="Rotation" type="Node2D" unique_id=332891341]
+
+[node name="Simple Cannon" parent="." unique_id=117551811 instance=ExtResource("1_la1eu")]
+position = Vector2(552, 296)
