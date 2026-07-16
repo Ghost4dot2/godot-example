@@ -10,13 +10,14 @@
 [ext_resource type="Texture2D" uid="uid://kh4nin7gpuvu" path="res://Mage/assets/attacks/slash_slam_spritesheet.png" id="8_kn2lx"]
 [ext_resource type="Texture2D" uid="uid://02m3ocsroqkv" path="res://Mage/assets/attacks/strike_effect_spritesheet.png" id="9_0bslb"]
 [ext_resource type="Texture2D" uid="uid://40bmkl1c77ej" path="res://Mage/assets/attacks/uppercut_spritesheet.png" id="10_y8r3j"]
+[ext_resource type="Script" uid="uid://ciw8bv240mced" path="res://Mage/attacks.gd" id="11_ge62b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gstgf"]
 size = Vector2(128, 272)
 
 [sub_resource type="Animation" id="Animation_s75wl"]
 resource_name = "Attack1"
-length = 6.0
+length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -24,42 +25,102 @@ tracks/0/path = NodePath("Slashs:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [true, false]
 }
-tracks/1/type = "method"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Slashs")
+tracks/1/path = NodePath("Slashs:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"attack 1", 1.0, false],
-"method": &"play"
-}]
+"update": 1,
+"values": [&"attack 1"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Slashs:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 6]
+}
+
+[sub_resource type="Animation" id="Animation_ge62b"]
+resource_name = "Attack2"
+length = 0.26666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slashs:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slashs:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Slashs:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"attack 2", &"attack 2"]
 }
 
 [sub_resource type="Animation" id="Animation_ruddj"]
 resource_name = "Idle"
 length = 0.6666667
-tracks/0/type = "method"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"Idle", 1.0, false],
-"method": &"play"
-}]
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 19]
 }
 
 [sub_resource type="Animation" id="Animation_c4ijo"]
@@ -76,62 +137,142 @@ tracks/0/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slashs:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Slashs:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack 2"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Dash"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimatedSprite2D:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [19]
+}
 
 [sub_resource type="Animation" id="Animation_x15gl"]
 resource_name = "dash"
-tracks/0/type = "method"
+length = 1.5
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"Dash", 1.0, false],
-"method": &"play"
-}]
+"update": 1,
+"values": [&"Dash"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.4666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 15]
 }
 
 [sub_resource type="Animation" id="Animation_4msvh"]
 resource_name = "jump"
-tracks/0/type = "method"
+length = 0.3
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"Jump", 1.0, false],
-"method": &"play"
-}]
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 7]
 }
 
 [sub_resource type="Animation" id="Animation_myweg"]
 resource_name = "walk-left"
-length = 0.6666667
-tracks/0/type = "method"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"Walk", 1.0, false],
-"method": &"play"
-}]
+"update": 1,
+"values": [&"Walk"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.96666664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 19]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_daruw"]
 _data = {
 &"Attack1": SubResource("Animation_s75wl"),
+&"Attack2": SubResource("Animation_ge62b"),
 &"Idle": SubResource("Animation_ruddj"),
 &"RESET": SubResource("Animation_c4ijo"),
 &"dash": SubResource("Animation_x15gl"),
@@ -546,6 +687,34 @@ region = Rect2(2760, 0, 552, 512)
 atlas = ExtResource("8_kn2lx")
 region = Rect2(3312, 0, 552, 512)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_csc8v"]
+atlas = ExtResource("10_y8r3j")
+region = Rect2(0, 0, 513, 546)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ge62b"]
+atlas = ExtResource("10_y8r3j")
+region = Rect2(513, 0, 513, 546)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ldse"]
+atlas = ExtResource("10_y8r3j")
+region = Rect2(1026, 0, 513, 546)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ho827"]
+atlas = ExtResource("10_y8r3j")
+region = Rect2(1539, 0, 513, 546)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vl7k"]
+atlas = ExtResource("10_y8r3j")
+region = Rect2(2052, 0, 513, 546)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kn2lx"]
+atlas = ExtResource("10_y8r3j")
+region = Rect2(2565, 0, 513, 546)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bslb"]
+atlas = ExtResource("10_y8r3j")
+region = Rect2(3078, 0, 513, 546)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_ixnmj"]
 animations = [{
 "frames": [{
@@ -572,7 +741,33 @@ animations = [{
 }],
 "loop": 0,
 "name": &"attack 1",
-"speed": 12.0
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_csc8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ge62b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ldse")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ho827")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vl7k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kn2lx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bslb")
+}],
+"loop": 0,
+"name": &"attack 2",
+"speed": 24.0
 }]
 
 [node name="Mage" type="CharacterBody2D" unique_id=1489306979]
@@ -587,7 +782,6 @@ sprite_frames = ExtResource("2_x15gl")
 animation = &"Dash"
 autoplay = "Idle"
 frame = 15
-frame_progress = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1371412893]
 libraries/ = SubResource("AnimationLibrary_daruw")
@@ -604,7 +798,9 @@ frame_progress = 1.0
 position = Vector2(190, 0)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_ixnmj")
-animation = &"attack 1"
-speed_scale = 2.0
+animation = &"attack 2"
+script = ExtResource("11_ge62b")
 
-[connection signal="animation_finished" from="Slashs" to="." method="_on_slashs_animation_finished"]
+[node name="ComboTimer" type="Timer" parent="Slashs" unique_id=1836182352]
+wait_time = 0.16
+one_shot = true

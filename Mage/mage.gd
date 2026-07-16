@@ -5,6 +5,8 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -600.0
 const ATTACK_OFFSET = 190.0
 var sprint = 1
+var combo = false
+@onready var combo_timer = $Slashs/ComboTimer
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Attack"):
@@ -14,8 +16,6 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("sprint"):
 		sprint = 1
 
-func _ready():
-	$Slashs.hide()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -25,6 +25,7 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		$AnimationPlayer.play("jump")
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -36,6 +37,10 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED * sprint
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	if combo and not $Slashs.is_playing():
+		$AnimationPlayer.play("Attack2")
+		#combo = false
 
 	move_and_slide()
 	
@@ -52,13 +57,8 @@ func handleFacingDirection(direction: float):
 		$Slashs.position.x = ATTACK_OFFSET
 
 func determineAnimation():
-	if not is_on_floor():
-		$AnimationPlayer.play("jump")
-	elif Input.is_action_pressed("Left") or Input.is_action_pressed("Right"):
-		$AnimationPlayer.play("walk", -1, sprint)
-	else:
-		$AnimationPlayer.play("Idle")
-
-
-func _on_slashs_animation_finished() -> void:
-	$Slashs.hide()
+	if is_on_floor():
+		if Input.is_action_pressed("Left") or Input.is_action_pressed("Right"):
+			$AnimationPlayer.play("walk", -1, sprint)
+		else:
+			$AnimationPlayer.play("Idle")
