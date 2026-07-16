@@ -1,0 +1,22 @@
+[gd_resource type="AnimationNodeBlendSpace1D" format=3 uid="uid://duse8aimq3dtd"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6ldse"]
+animation = &"walk_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ho827"]
+animation = &"walk_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sofpm"]
+animation = &"Idle"
+
+[resource]
+blend_mode = 1
+blend_point_0/node = SubResource("AnimationNodeAnimation_6ldse")
+blend_point_0/pos = -1.0
+blend_point_0/name = &"walk_left"
+blend_point_1/node = SubResource("AnimationNodeAnimation_ho827")
+blend_point_1/pos = 1.0
+blend_point_1/name = &"walk_right"
+blend_point_2/node = SubResource("AnimationNodeAnimation_sofpm")
+blend_point_2/pos = 0.0
+blend_point_2/name = &"Idle"

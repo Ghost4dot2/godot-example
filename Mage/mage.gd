@@ -10,7 +10,7 @@ var combo = false
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Attack"):
-		$AnimationPlayer.play("Attack1")
+		$AttackAnimations.play("Attack1")
 	if event.is_action_pressed("sprint"):
 		sprint = 2
 	if event.is_action_released("sprint"):
@@ -30,7 +30,10 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("Left", "Right")
-	handleFacingDirection(direction)
+	#$AnimationTree.set("parameters/BlendSpace1D/blend_position", direction)
+	#$AnimationTree.set("parameters/blend_position", direction)
+	#print(direction)
+	#handleFacingDirection(direction)
 	determineAnimation()
 	
 	if direction:
@@ -38,27 +41,33 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	if combo and not $Slashs.is_playing():
-		$AnimationPlayer.play("Attack2")
+	#if combo and not $Slashs.is_playing():
+		#$AnimationPlayer.play("Attack2")
 		#combo = false
 
 	move_and_slide()
-	
-func handleFacingDirection(direction: float):
-	#facing left
-	if direction < 0:
-		$AnimatedSprite2D.flip_h = true
-		$Slashs.flip_h = true
-		$Slashs.position.x = -ATTACK_OFFSET
-	#facing right
-	if direction > 0:
-		$AnimatedSprite2D.flip_h = false
-		$Slashs.flip_h = false
-		$Slashs.position.x = ATTACK_OFFSET
+	#
+#func handleFacingDirection(direction: float):
+	##facing left
+	#if direction < 0:
+		#$AnimatedSprite2D.flip_h = true
+		#$Slashs.flip_h = true
+		#$Slashs.position.x = -ATTACK_OFFSET
+	##facing right
+	#if direction > 0:
+		#$AnimatedSprite2D.flip_h = false
+		#$Slashs.flip_h = false
+		#$Slashs.position.x = ATTACK_OFFSET
 
 func determineAnimation():
 	if is_on_floor():
-		if Input.is_action_pressed("Left") or Input.is_action_pressed("Right"):
-			$AnimationPlayer.play("walk", -1, sprint)
+		if Input.is_action_pressed("Left"):
+			$AnimationPlayer.play("walk_left", -1, sprint)
+		elif Input.is_action_pressed("Right"):
+			$AnimationPlayer.play("walk_right", -1, sprint)
 		else:
 			$AnimationPlayer.play("Idle")
+
+func handleAttackDirection():
+	$Slashs.flip_h = $AnimatedSprite2D.flip_h
+	$Slashs.position.x = -ATTACK_OFFSET if $AnimatedSprite2D.flip_h else ATTACK_OFFSET
